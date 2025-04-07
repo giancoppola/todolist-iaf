@@ -84,6 +84,7 @@ textarea {
     }
     &__complete {
       transform: scale(2);
+      cursor: pointer;
     }
     &__title {
       text-align: left;

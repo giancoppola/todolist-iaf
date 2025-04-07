@@ -84,6 +84,7 @@ textarea {
 }
 .to-do-list-item__complete {
   transform: scale(2);
+  cursor: pointer;
 }
 .to-do-list-item__title {
   text-align: left;
