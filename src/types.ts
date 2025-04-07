@@ -1,7 +1,3 @@
-export interface iToDoList {
-    [key: number]: iToDoItem;
-}
-
 export interface iToDoItem {
     id: UUID;
     title: string;

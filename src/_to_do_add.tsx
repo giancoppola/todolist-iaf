@@ -1,5 +1,5 @@
 import {useEffect, useRef, useState} from "react";
-import {iToDoItem} from "../types.ts";
+import {iToDoItem} from "./types.ts";
 
 interface iToDoAddButtonAndModalProps {
     addToDoItem: (item: iToDoItem) => void;
@@ -8,6 +8,9 @@ export const ToDoAddButtonAndModal = (props: iToDoAddButtonAndModalProps) => {
     const dialogRef = useRef<HTMLDialogElement>(null);
     const OpenDialog = () => {
         dialogRef.current?.showModal();
+    }
+    const CloseDialog = () => {
+        dialogRef.current?.close();
     }
 
     const [title, setTitle] = useState("");
@@ -25,6 +28,11 @@ export const ToDoAddButtonAndModal = (props: iToDoAddButtonAndModalProps) => {
         }
         props.addToDoItem(newToDoItem);
         dialogRef.current?.close();
+        ResetForm();
+    }
+    const ResetForm = () => {
+        setTitle("");
+        setDescription("");
     }
     useEffect(() => {
         dialogRef.current?.addEventListener("click",(e) => {
@@ -37,7 +45,7 @@ export const ToDoAddButtonAndModal = (props: iToDoAddButtonAndModalProps) => {
                     e.clientY <= rect.bottom;
 
                 if (!clickedInDialog) {
-                    dialogRef.current?.close();
+                    CloseDialog();
                 }
             }
         })
@@ -46,14 +54,19 @@ export const ToDoAddButtonAndModal = (props: iToDoAddButtonAndModalProps) => {
         <>
         <dialog ref={dialogRef}>
             <div className="dialog-content">
+                <span onClick={CloseDialog} className="dialog-content__close material-symbols-outlined">
+                    close
+                </span>
                 <div className="form-input-container">
                     <label htmlFor="title">Title</label>
                     <input type="text" name="title" value={title} onChange={(e) => setTitle(e.target.value)}/>
-                    <label htmlFor="description">Description</label>
-                    <input type="text" name="description" value={description} onChange={(e) => setDescription(e.target.value)}/>
                 </div>
-                <button onClick={AddItem}>Add Item</button>
-            </div>
+                <div className="form-input-container">
+                    <label htmlFor="description">Description</label>
+                    <textarea name="description" value={description} onChange={(e) => setDescription(e.target.value)}/>
+                </div>
+                <button onClick={AddItem}>Add Task</button>
+                </div>
         </dialog>
             <button onClick={OpenDialog}>Create Task</button>
         </>
