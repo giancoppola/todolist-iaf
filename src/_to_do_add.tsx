@@ -54,9 +54,11 @@ export const ToDoAddButtonAndModal = (props: iToDoAddButtonAndModalProps) => {
         <>
         <dialog ref={dialogRef}>
             <div className="dialog-content">
-                <span onClick={CloseDialog} className="dialog-content__close material-symbols-outlined">
-                    close
-                </span>
+                <button onClick={CloseDialog} className="dialog-content__close">
+                    <span onClick={CloseDialog} className="material-symbols-outlined">
+                        close
+                    </span>
+                </button>
                 <div className="form-input-container">
                     <label htmlFor="title">Title</label>
                     <input type="text" name="title" value={title} onChange={(e) => setTitle(e.target.value)}/>
