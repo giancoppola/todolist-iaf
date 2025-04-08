@@ -4,6 +4,9 @@
 
 dialog {
   padding: 0;
+  border-radius: 25px;
+  min-height: 300px;
+  min-width: 280px;
   .dialog-content {
     display: flex;
     flex-direction: column;
@@ -62,9 +65,9 @@ textarea {
     border: solid 0px white;
     border-radius: 20px;
     padding: 2rem;
-    transition: border-width .15s linear;
+    transition: border-width .2s ease-in-out;
     &:hover {
-      border: solid 3px white;
+      border: solid 5px white;
     }
     &[data-task-complete="true"] {
       p {
